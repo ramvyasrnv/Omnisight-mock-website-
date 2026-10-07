@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Omnisight – Online Shopping</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fafafa;--card:#fff;--tx:#171717;--mu:#6b7280;--ln:#e5e7eb;--gold:#171717;--ok:#15803d;--bad:#dc2626;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,sans-serif;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}a{color:inherit;text-decoration:none}
+header{background:#fff;border-bottom:1px solid var(--ln);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.bar{max-width:1100px;margin:auto;display:flex;gap:16px;align-items:center;padding:12px 16px}
+.logo{font-weight:700;font-size:1.35rem;letter-spacing:-.5px;cursor:pointer}.logo b{font-weight:400;color:var(--mu)}
+.search{flex:1;display:flex;min-width:0;gap:8px}
+.search input{flex:1;min-width:0}
+.search button{border:1px solid var(--ln);background:#fff;padding:0 16px;border-radius:8px;cursor:pointer}
+.search button:hover{background:#f3f4f6}
+.cartlink{font-weight:500;padding:8px 4px;white-space:nowrap}
+.badge{background:var(--tx);color:#fff;border-radius:99px;font-size:.75rem;padding:1px 8px;margin-left:6px}
+.cats{max-width:1100px;margin:auto;display:flex;gap:4px;overflow-x:auto;padding:0 12px 8px}
+.cats a{padding:5px 12px;border-radius:8px;font-size:.92rem;white-space:nowrap;cursor:pointer;color:var(--mu)}
+.cats a:hover{color:var(--tx);background:#f3f4f6}.cats a.on{color:var(--tx);font-weight:600;background:#f3f4f6}
+main{max-width:1100px;margin:auto;padding:20px 16px}
+.hero{background:#f0f0ee;border-radius:12px;padding:36px 32px;margin-bottom:24px}
+.hero h1{margin:0 0 8px;font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.2;letter-spacing:-.5px}
+.hero p{margin:0 0 18px;color:var(--mu);max-width:50ch}
+.btn{border:1px solid var(--tx);background:var(--tx);color:#fff;font-weight:500;padding:10px 18px;border-radius:8px;cursor:pointer}
+.btn:hover{opacity:.88}.btn.alt{background:#fff;color:var(--tx);border-color:var(--ln)}.btn.alt:hover{background:#f3f4f6;opacity:1}
+.btn.full{width:100%;padding:12px}
+:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+.tools{display:flex;justify-content:space-between;align-items:center;margin:4px 0 14px;gap:10px;flex-wrap:wrap}
+.tools h2,h2{margin:0;font-size:1.25rem}
+select,input,textarea{background:#fff;border:1px solid var(--ln);border-radius:8px;padding:9px 11px}
+input:focus,textarea:focus,select:focus{border-color:var(--tx);outline:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.card,.box{background:var(--card);border:1px solid var(--ln);border-radius:12px}
+.card{overflow:hidden;display:flex;flex-direction:column}
+.img,.th,.big{background:#f3f4f6!important}
+.img{height:150px;display:grid;place-items:center;font-size:4rem;cursor:pointer}
+.cb{padding:12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.cb .t{font-weight:500;cursor:pointer}.cb .t:hover{text-decoration:underline}
+.star{color:#d97706;font-size:.85rem}.mu{color:var(--mu);font-size:.85rem}
+.pr{font-size:1.1rem;font-weight:600}.pr s{font-size:.85rem;font-weight:400;color:var(--mu);margin:0 6px}.pr em{font-style:normal;color:var(--ok);font-size:.85rem;font-weight:500}
+.cb .btn{margin-top:auto}
+.box{padding:18px}
+.two{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+.row{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--ln)}.row:last-child{border:0}
+.row .th{width:76px;height:76px;border-radius:10px;display:grid;place-items:center;font-size:2.2rem;flex:none}.row .in{flex:1;min-width:0}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--ln);border-radius:8px;overflow:hidden}
+.qty button{border:0;background:#fff;width:32px;height:32px;cursor:pointer;font-size:1.1rem}.qty button:hover{background:#f3f4f6}
+.qty span{width:34px;text-align:center;font-weight:500}
+.link{background:none;border:0;color:#2563eb;cursor:pointer;padding:0 8px;font-size:.88rem}
+.sum div{display:flex;justify-content:space-between;padding:4px 0}.sum .tot{border-top:1px solid var(--ln);margin-top:8px;padding-top:10px;font-weight:700;font-size:1.1rem}
+.steps{display:flex;gap:8px;margin-bottom:16px;font-size:.88rem;flex-wrap:wrap}
+.steps span{padding:4px 12px;border-radius:99px;border:1px solid var(--ln);color:var(--mu);background:#fff}
+.steps .on{background:var(--tx);color:#fff;border-color:var(--tx)}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:12px}.f .w{grid-column:1/-1}
+label{display:flex;flex-direction:column;gap:4px;font-size:.88rem;font-weight:500}
+label input,label textarea,label select{font-weight:400;width:100%}
+.err{color:var(--bad);font-size:.78rem;font-weight:400;min-height:1em}.bad input,.bad textarea{border-color:var(--bad)}
+.pay{display:flex;gap:10px;align-items:center;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:8px;cursor:pointer;font-weight:400}
+.pay.on{border-color:var(--tx);background:#f9fafb}.pay input{width:auto;accent-color:#171717}
+.detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px}
+.detail .big{border-radius:12px;display:grid;place-items:center;font-size:8rem;min-height:280px}
+.ok{text-align:center;padding:40px 10px}.ok .tick{font-size:3rem}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(80px);background:var(--tx);color:#fff;padding:10px 18px;border-radius:8px;transition:transform .2s;z-index:9;pointer-events:none}
+#toast.show{transform:translateX(-50%)}
+footer{text-align:center;padding:24px 12px;margin-top:30px;font-size:.88rem;color:var(--mu);border-top:1px solid var(--ln)}
+@media(max-width:800px){.two,.detail{grid-template-columns:1fr}.f{grid-template-columns:1fr}.hero{padding:26px 20px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header><div class="bar">
+<a class="logo" href="#/" data-home aria-label="Omnisight home">Omni<b>sight</b></a>
+<form class="search" id="sf" role="search"><input id="q" placeholder="Search products" aria-label="Search products"><button>Search</button></form>
+<a class="cartlink" href="#/cart">🛒 Cart<span class="badge" id="cc">0</span></a></div>
+<nav class="cats" id="cats"></nav></header>
+<main id="app"></main>
+<footer>Omnisight is a demo store. No real payments are taken and no orders are shipped.</footer>
+<div id="toast" role="status"></div>
+<script>
+const P=[
+{id:1,n:"Wireless Noise-Cancelling Headphones",c:"Electronics",p:2499,m:3999,e:"🎧",r:4.5,k:"#dbe7ff",d:"40-hour battery, deep bass and a foldable design for travel."},
+{id:2,n:"Smart Watch with Heart Monitor",c:"Electronics",p:3299,m:5999,e:"⌚",r:4.2,k:"#e3f6e8",d:"AMOLED display, sleep tracking and 7-day battery life."},
+{id:3,n:"Bluetooth Speaker (20W)",c:"Electronics",p:1499,m:2499,e:"🔊",r:4.4,k:"#ffe9d6",d:"Water-resistant speaker with room-filling sound."},
+{id:4,n:"Gaming Laptop 15.6\"",c:"Electronics",p:58990,m:72000,e:"💻",r:4.6,k:"#e6e1ff",d:"16GB RAM, 512GB SSD and a 144Hz display."},
+{id:5,n:"Men's Cotton Casual Shirt",c:"Fashion",p:699,m:1499,e:"👕",r:4.1,k:"#ffe1e6",d:"Breathable pure cotton, regular fit, easy to wash."},
+{id:6,n:"Running Shoes",c:"Fashion",p:1899,m:3299,e:"👟",r:4.3,k:"#fff2c9",d:"Lightweight cushioned sole for daily runs."},
+{id:7,n:"Leather Backpack",c:"Fashion",p:1299,m:2199,e:"🎒",r:4.0,k:"#e8dccf",d:"Fits a 15-inch laptop, with three zip compartments."},
+{id:8,n:"Stainless Steel Water Bottle",c:"Home",p:449,m:799,e:"🍶",r:4.5,k:"#d9f3f5",d:"Keeps drinks cold for 24 hours or hot for 12."},
+{id:9,n:"Ceramic Coffee Mug Set (4)",c:"Home",p:599,m:999,e:"☕",r:4.2,k:"#fde6d3",d:"Microwave-safe mugs in matte pastel colours."},
+{id:10,n:"LED Desk Lamp",c:"Home",p:849,m:1399,e:"💡",r:4.4,k:"#fff6c2",d:"Three colour modes, five brightness levels, USB powered."},
+{id:11,n:"Atomic Habits",c:"Books",p:349,m:599,e:"📘",r:4.8,k:"#d8e8ff",d:"A practical guide to building good habits and breaking bad ones."},
+{id:12,n:"The Psychology of Money",c:"Books",p:299,m:499,e:"📗",r:4.7,k:"#dcf5df",d:"Timeless lessons on wealth, greed and happiness."}];
+const CATS=["All","Electronics","Fashion","Home","Books"];
+const $=s=>document.querySelector(s),f=n=>"₹"+n.toLocaleString("en-IN");
+let S={cart:{},addr:null,coupon:"",cat:"All",q:"",sort:"rel"};
+try{Object.assign(S,JSON.parse(localStorage.getItem("bz")||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem("bz",JSON.stringify({cart:S.cart,addr:S.addr,coupon:S.coupon}))}catch(e){}};
+const byId=id=>P.find(x=>x.id==id);
+const count=()=>Object.values(S.cart).reduce((a,b)=>a+b,0);
+function tot(){let sub=0;for(const id in S.cart)sub+=byId(id).p*S.cart[id];
+const disc=S.coupon=="SAVE10"?Math.round(sub*.1):0,ship=sub-disc>=999||!sub?0:49;
+return{sub,disc,ship,total:sub-disc+ship}}
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("show"),1600)}
+function add(id,n=1){S.cart[id]=(S.cart[id]||0)+n;if(S.cart[id]<=0)delete S.cart[id];save();badge()}
+function badge(){$("#cc").textContent=count()}
+const stars=r=>"★".repeat(Math.round(r))+"☆".repeat(5-Math.round(r));
+const off=p=>Math.round((1-p.p/p.m)*100);
+function card(p){return`<div class="card"><div class="img" style="background:${p.k}" data-go="#/product/${p.id}">${p.e}</div><div class="cb"><span class="t" data-go="#/product/${p.id}">${p.n}</span><span class="star">${stars(p.r)} <span class="mu">${p.r}</span></span><div class="pr">${f(p.p)}<s>${f(p.m)}</s><em>${off(p)}% off</em></div><button class="btn" data-add="${p.id}">Add to cart</button></div></div>`}
+function nav(r){$("#cats").innerHTML=CATS.map(c=>`<a class="${S.cat==c&&r=="/"?"on":""}" data-cat="${c}">${c}</a>`).join("")}
+const V={
+"/"(){let l=P.filter(p=>(S.cat=="All"||p.c==S.cat)&&p.n.toLowerCase().includes(S.q.toLowerCase()));
+if(S.sort=="lo")l.sort((a,b)=>a.p-b.p);if(S.sort=="hi")l.sort((a,b)=>b.p-a.p);if(S.sort=="rt")l.sort((a,b)=>b.r-a.r);
+return`${S.q||S.cat!="All"?"":`<section class="hero"><h1>Everyday things, delivered fast.</h1><p>Free delivery on orders above ₹999. Use code SAVE10 for 10% off your cart.</p><button class="btn" data-go="#/" data-scroll>Shop now</button></section>`}
+<div class="tools" id="shop"><h2>${S.q?`Results for "${S.q}"`:S.cat=="All"?"Today's deals":S.cat}</h2><label style="flex-direction:row;align-items:center">Sort <select id="sort"><option value="rel">Featured</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option><option value="rt">Top rated</option></select></label></div>
+${l.length?`<div class="grid">${l.map(card).join("")}</div>`:`<div class="box">No products match your search. Try a different word or pick another category.</div>`}`},
+"/product"(id){const p=byId(id);if(!p)return V["/"]();const rel=P.filter(x=>x.c==p.c&&x.id!=p.id).slice(0,4);
+return`<div class="box detail"><div class="big" style="background:${p.k}">${p.e}</div><div><h1 style="margin-top:0">${p.n}</h1><div class="star">${stars(p.r)} <span class="mu">${p.r} rating</span></div><div class="pr" style="font-size:1.8rem;margin:10px 0">${f(p.p)}<s>${f(p.m)}</s><em>${off(p)}% off</em></div><p>${p.d}</p><p class="mu">Category: ${p.c} · Free delivery above ₹999 · 7-day returns</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" data-add="${p.id}">Add to cart</button><button class="btn alt" data-buy="${p.id}">Buy now</button></div></div></div>
+${rel.length?`<h2>More in ${p.c}</h2><div class="grid">${rel.map(card).join("")}</div>`:""}`},
+"/cart"(){const ids=Object.keys(S.cart);if(!ids.length)return`<div class="box ok"><div class="tick">🛒</div><h2>Your cart is empty</h2><p class="mu">Add a few things you like and they will show up here.</p><button class="btn" data-go="#/">Start shopping</button></div>`;const t=tot();
+return`<h2 style="margin-top:0">Shopping cart</h2><div class="two"><div class="box">${ids.map(id=>{const p=byId(id),q=S.cart[id];return`<div class="row"><div class="th" style="background:${p.k}">${p.e}</div><div class="in"><div class="t" style="font-weight:600;cursor:pointer" data-go="#/product/${id}">${p.n}</div><div class="pr">${f(p.p)}</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px"><span class="qty"><button data-dec="${id}" aria-label="Decrease quantity">−</button><span>${q}</span><button data-inc="${id}" aria-label="Increase quantity">+</button></span><button class="link" data-rm="${id}">Remove</button></div></div><b>${f(p.p*q)}</b></div>`}).join("")}</div>${summary(t,`<button class="btn full" data-go="#/checkout">Proceed to checkout</button>`,true)}</div>`},
+"/checkout"(){const a=S.addr||{};const fl=(k,l,ph="",w="")=>`<label class="${w}" data-f="${k}">${l}<input name="${k}" value="${a[k]||""}" placeholder="${ph}"><span class="err"></span></label>`;
+return`${steps(1)}<div class="two"><form class="box" id="af" novalidate><h2 style="margin-top:0">Delivery address</h2><div class="f">${fl("name","Full name","e.g. Ram Vyas")}${fl("phone","Phone number","10-digit mobile")}${fl("email","Email","you@example.com","w")}<label class="w" data-f="addr">Address<textarea name="addr" rows="2" placeholder="House no, street, area">${a.addr||""}</textarea><span class="err"></span></label>${fl("city","City")}${fl("pin","PIN code","6 digits")}<label class="w" data-f="state">State<select name="state">${["Gujarat","Maharashtra","Rajasthan","Delhi","Karnataka","Tamil Nadu","Uttar Pradesh","West Bengal","Other"].map(s=>`<option ${a.state==s?"selected":""}>${s}</option>`).join("")}</select></label><label class="w" style="flex-direction:row;align-items:center;font-weight:400"><input type="checkbox" name="gift" style="width:auto" ${a.gift?"checked":""}> This order is a gift (hide prices on slip)</label></div><button class="btn full" style="margin-top:14px">Continue to payment</button></form>${summary(tot())}</div>`},
+"/payment"(){const m=S.mode||"upi";const pm=[["upi","📱","UPI (GPay, PhonePe, Paytm)"],["card","💳","Credit or debit card"],["net","🏦","Net banking"],["cod","💵","Cash on delivery"]];
+const fld=(n,l,ph)=>`<label data-f="${n}">${l}<input name="${n}" placeholder="${ph}" autocomplete="off"><span class="err"></span></label>`;
+const body={upi:fld("upi","UPI ID","name@bank"),card:`<div class="f"><div class="w">${fld("cn","Card number","16 digits")}</div>${fld("ce","Expiry","MM/YY")}${fld("cv","CVV","3 digits")}<div class="w">${fld("ch","Name on card","")}</div></div>`,net:`<label>Choose bank<select name="bank"><option>HDFC Bank</option><option>SBI</option><option>ICICI Bank</option><option>Axis Bank</option></select></label>`,cod:`<p class="mu">Pay in cash when the order arrives. A ₹30 handling fee applies.</p>`}[m];
+const t=tot();if(m=="cod")t.total+=30;
+return`${steps(2)}<div class="two"><form class="box" id="pf" novalidate><h2 style="margin-top:0">Payment method</h2>${pm.map(x=>`<label class="pay ${m==x[0]?"on":""}" style="flex-direction:row"><input type="radio" name="mode" value="${x[0]}" ${m==x[0]?"checked":""}> ${x[1]} ${x[2]}</label>`).join("")}<div style="margin:14px 0">${body}</div><button class="btn full">${m=="cod"?"Place order":"Pay "+f(t.total)}</button></form><div>${summary(t)}<div class="box mu" style="margin-top:12px"><b style="color:var(--tx)">Delivering to</b><br>${S.addr.name}, ${S.addr.addr}, ${S.addr.city} ${S.addr.pin}<br>${S.addr.phone}</div></div></div>`},
+"/success"(){const o=S.order;if(!o)return V["/"]();return`<div class="box ok"><div class="tick">✅</div><h2>Order placed. Thank you, ${o.name.split(" ")[0]}!</h2><p>Order <b>${o.id}</b> · ${f(o.total)} · paid by ${o.mode}</p><p class="mu">Arriving in 3 to 5 days at ${o.city}. A confirmation was sent to ${o.email}.</p><button class="btn" data-go="#/">Continue shopping</button></div>`}};
+function steps(n){return`<div class="steps">${["Cart","Address","Payment","Done"].map((s,i)=>`<span class="${i<=n?"on":""}">${s}</span>`).join("")}</div>`}
+function summary(t,btn="",cp=false){return`<aside class="box sum"><h3 style="margin-top:0">Order summary</h3><div><span>Items (${count()})</span><span>${f(t.sub)}</span></div>${t.disc?`<div><span>Coupon ${S.coupon}</span><span style="color:var(--ok)">−${f(t.disc)}</span></div>`:""}<div><span>Delivery</span><span>${t.ship?f(t.ship):"Free"}</span></div><div class="tot"><span>Total</span><span>${f(t.total)}</span></div>${cp?`<div style="display:flex;gap:6px;margin:12px 0"><input id="cp" placeholder="Coupon (try SAVE10)" value="${S.coupon}" style="flex:1;min-width:0"><button class="btn alt" data-cp>Apply</button></div>`:""}<div style="margin-top:12px">${btn}</div></aside>`}
+function render(){const h=location.hash.slice(1)||"/",[,r,id]=h.split("/"),route="/"+(r||"");let k=V[route]?route:"/";
+if((k=="/checkout"||k=="/payment")&&!count()){location.hash="#/cart";return}
+if(k=="/payment"&&!S.addr){location.hash="#/checkout";return}
+nav(k);$("#app").innerHTML=V[k](id);if(k=="/"&&$("#sort"))$("#sort").value=S.sort;window.scrollTo(0,0);badge();document.title="Omnisight – "+(k=="/"?"Online Shopping":k.slice(1))}
+const val={name:v=>v.trim().length>=3||"Enter your full name",phone:v=>/^[6-9]\d{9}$/.test(v)||"Enter a valid 10-digit mobile number",email:v=>/^\S+@\S+\.\S+$/.test(v)||"Enter a valid email",addr:v=>v.trim().length>=8||"Enter your full address",city:v=>v.trim().length>=2||"Enter your city",pin:v=>/^\d{6}$/.test(v)||"PIN code must be 6 digits",upi:v=>/^[\w.-]+@[\w]+$/.test(v)||"Enter a valid UPI ID like name@bank",cn:v=>/^\d{16}$/.test(v.replace(/\s/g,""))||"Card number must be 16 digits",ce:v=>/^(0[1-9]|1[0-2])\/\d{2}$/.test(v)||"Use MM/YY",cv:v=>/^\d{3}$/.test(v)||"CVV must be 3 digits",ch:v=>v.trim().length>=3||"Enter the name on the card"};
+function check(form){let ok=true;form.querySelectorAll("[data-f]").forEach(l=>{const i=l.querySelector("input,textarea"),fn=i&&val[i.name];if(!fn)return;const r=fn(i.value),e=l.querySelector(".err");l.classList.toggle("bad",r!==true);e.textContent=r===true?"":r;if(r!==true)ok=false});if(!ok){const b=form.querySelector(".bad input,.bad textarea");b&&b.focus()}return ok}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-home],[data-go],[data-add],[data-buy],[data-inc],[data-dec],[data-rm],[data-cat],[data-cp]");if(!t)return;const d=t.dataset;
+if("home" in d){e.preventDefault();S.cat="All";S.q="";S.sort="rel";$("#q").value="";if(location.hash.length>2)location.hash="#/";else render();window.scrollTo(0,0);return}
+if(d.scroll){const s=$("#shop");s&&s.scrollIntoView({behavior:"smooth"});return}
+if(d.go){location.hash=d.go;return}
+if(d.add){add(d.add);toast("Added to cart");return}
+if(d.buy){add(d.buy);location.hash="#/cart";return}
+if(d.inc){add(d.inc,1);render();return}
+if(d.dec){add(d.dec,-1);render();return}
+if(d.rm){delete S.cart[d.rm];save();render();toast("Item removed");return}
+if(d.cat){S.cat=d.cat;S.q="";$("#q").value="";if(location.hash.length>2)location.hash="#/";else render();return}
+if("cp" in d){const v=$("#cp").value.trim().toUpperCase();if(v==="SAVE10"||!v){S.coupon=v;save();render();toast(v?"Coupon applied":"Coupon removed")}else toast("Invalid coupon code")}});
+document.addEventListener("change",e=>{if(e.target.id=="sort"){S.sort=e.target.value;render()}if(e.target.name=="mode"){S.mode=e.target.value;render()}});
+$("#sf").addEventListener("submit",e=>{e.preventDefault();S.q=$("#q").value;S.cat="All";if(location.hash.length>2)location.hash="#/";else render()});
+document.addEventListener("submit",e=>{e.preventDefault();const fm=e.target;if(fm.id=="af"){if(!check(fm))return;S.addr=Object.fromEntries(new FormData(fm));S.addr.gift=fm.gift.checked;save();location.hash="#/payment"}
+if(fm.id=="pf"){if(!check(fm))return;const t=tot(),mode=S.mode||"upi",names={upi:"UPI",card:"card",net:"net banking",cod:"cash on delivery"};if(mode=="cod")t.total+=30;
+S.order={id:"BZ"+Date.now().toString().slice(-8),total:t.total,mode:names[mode],name:S.addr.name,city:S.addr.city,email:S.addr.email};S.cart={};S.coupon="";S.mode="upi";save();location.hash="#/success"}});
+window.addEventListener("hashchange",render);render();
+</script></body></html>
